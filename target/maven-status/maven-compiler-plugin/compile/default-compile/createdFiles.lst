@@ -5,6 +5,7 @@ com\bank\product\Product.class
 com\bank\service\ValidationService.class
 com\bank\application\Application.class
 com\bank\product\ProductFactory.class
+com\bank\service\ApplicationProcessor.class
 com\bank\exception\InvalidAmountException.class
 com\bank\product\LoanType.class
 com\bank\application\Application$Builder.class
