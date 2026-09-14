@@ -7,8 +7,8 @@ public class DepositProduct extends Product{
     private boolean isRefillable;
 
     public DepositProduct(String id, String name, String description, boolean isActive,
-                          double maxSum, double minSum, String currency,  String earlyClosureTerms, boolean isRefillable) {
-        super(id, name, description, isActive, maxSum, minSum, currency);
+                          double minSum, double maxSum, String currency,  String earlyClosureTerms, boolean isRefillable) {
+        super(id, name, description, isActive, minSum, maxSum, currency);
         this.earlyClosureTerms = earlyClosureTerms;
         this.isRefillable = isRefillable;
     }

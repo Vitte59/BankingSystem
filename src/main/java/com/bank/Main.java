@@ -6,16 +6,20 @@ import com.bank.product.LoanType;
 import com.bank.product.Product;
 import com.bank.product.ProductFactory;
 import com.bank.service.ApplicationProcessor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
 
 public class Main {
+    private static final Logger log = LoggerFactory.getLogger(Main.class);
     public static void main(String[] args) throws BusinessException {
 
-        System.out.println("Запуск системы\n");
+        log.info("Запуск системы...");
 
         // 1. Создаём кредитный продукт через фабрику
-        Product credit = ProductFactory.createCreditProduct(
+        Product credit = ProductFactory.createProduct(
+                "CREDIT",
                 "P001",
                 "Ипотека",
                 "Долгосрочный кредит на жилье",
@@ -25,7 +29,9 @@ public class Main {
                 "RUB",
                 LoanType.MORTGAGE,
                 "Аннуитет",
-                true           // есть залог
+                true, // есть залог
+                null, //earlyClosureTerms
+                false //isRefillable эти два не нужны для кредита
         );
 
         // 2. Создаём заявку через Builder
@@ -39,12 +45,12 @@ public class Main {
                 .creationDate(LocalDate.now())
                 .build();
 
-        System.out.println("Заявка создана. Передаём в обработку...\n");
+        log.info("Заявка создана. Передаём в обработку.");
 
         // 3. Получаем синглтон-процессор и обрабатываем заявку
         ApplicationProcessor processor = ApplicationProcessor.getInstance();
         processor.process(application, credit);
 
-        System.out.println("\nЗаявка успешно обработана!");
+        log.info("Заявка успешно обработана.");
     }
 }

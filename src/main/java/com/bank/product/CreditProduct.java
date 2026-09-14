@@ -8,9 +8,9 @@ public class CreditProduct extends Product {
 
 
     public CreditProduct(String id, String name, String description, boolean isActive,
-                         double maxSum, double minSum, String currency, LoanType loanType,
+                         double minSum, double maxSum, String currency, LoanType loanType,
                          String repaymentSchedule, boolean hasCollateral) {
-        super(id, name, description, isActive, maxSum, minSum, currency);
+        super(id, name, description, isActive, minSum, maxSum, currency);
         this.loanType = loanType;
         this.repaymentSchedule = repaymentSchedule;
         this.hasCollateral = hasCollateral;

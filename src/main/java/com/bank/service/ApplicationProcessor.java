@@ -10,14 +10,14 @@ import org.slf4j.LoggerFactory;
 
 public class ApplicationProcessor {
 
-    public static final Logger log = LoggerFactory.getLogger(ApplicationProcessor.class);
+    private static final Logger log = LoggerFactory.getLogger(ApplicationProcessor.class);
 
     private final ValidationService validationService;
-    public ApplicationProcessor() {
+    private ApplicationProcessor() {
         this.validationService =  new ValidationService();
     }
 
-    public static final ApplicationProcessor INSTANCE = new ApplicationProcessor();
+    private static final ApplicationProcessor INSTANCE = new ApplicationProcessor();
 
     public static ApplicationProcessor getInstance() {
     return INSTANCE; }
@@ -28,7 +28,7 @@ public class ApplicationProcessor {
 
             log.info("Заявка {} успешно сохранена, валидация пройдена",application.getId());
         } catch (BusinessException e) {
-            log.error("Ошибка обработки заявки {}: {}", application.getId(), e.getMessage());
+            log.error("Ошибка обработки заявки {}: {}", application.getId(), e.getMessage(),e);
             throw e;
         }
     }

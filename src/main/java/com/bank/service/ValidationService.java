@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 public class ValidationService {
 
-    private static final Logger log = LoggerFactory.getLogger(ValidationService.class.getName());
+    private static final Logger log = LoggerFactory.getLogger(ValidationService.class);
     public void validate(Application application, Product product) throws BusinessException {
 
         if (!product.isActive()) {
@@ -19,7 +19,8 @@ public class ValidationService {
         }
 
         if (application.getAmount() < product.getMinSum() || application.getAmount() > product.getMaxSum()) {
-            log.error("Ошибка валидации: amount вне допустимых пределов", product.getId());
+            log.error("Ошибка валидации заявки {}: сумма {} вне диапазона [{}, {}]",
+                    application.getId(), application.getAmount(), product.getMinSum(), product.getMaxSum());
             throw new InvalidAmountException("amount должен быть между " + product.getMinSum() + " и " +  product.getMaxSum());
         }
 
