@@ -1,8 +1,10 @@
 package com.bank.application;
 
+import com.bank.repository.HasId;
+
 import java.time.LocalDate;
 
-public class Application {
+public class Application implements HasId<String> {
     private final String id;
     private final String clientId;
     private final String productId;

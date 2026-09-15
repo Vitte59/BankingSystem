@@ -1,6 +1,8 @@
 package com.bank.product;
 
-public abstract class Product implements FinancialProduct {
+import com.bank.repository.HasId;
+
+public abstract class Product implements FinancialProduct, HasId<String> {
     private String id;
     private String name;
     private String description;
@@ -8,9 +10,10 @@ public abstract class Product implements FinancialProduct {
     private final double minSum;
     private final double maxSum;
     private String currency;
+    private final double interestRate;
 
     public Product (String id, String name, String description, boolean isActive,
-                    double minSum, double maxSum, String currency) {
+                    double minSum, double maxSum, String currency,  double interestRate) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -18,6 +21,7 @@ public abstract class Product implements FinancialProduct {
         this.minSum = minSum;
         this.maxSum = maxSum;
         this.currency = currency;
+        this.interestRate = interestRate;
     }
 
     public String getId() {
@@ -38,8 +42,7 @@ public abstract class Product implements FinancialProduct {
     public double getMaxSum() {
         return maxSum;
     }
-    public String getCurrency() {
-        return currency;
-    }
+    public String getCurrency() { return currency;}
+    public double getInterestRate() { return interestRate; }
 }
 
